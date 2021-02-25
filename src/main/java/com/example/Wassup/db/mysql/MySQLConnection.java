@@ -277,5 +277,4 @@ public class MySQLConnection implements DBConnection {
         }
         return false;
     }
-
 }
