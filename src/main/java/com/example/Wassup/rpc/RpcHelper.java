@@ -2,11 +2,14 @@ package com.example.Wassup.rpc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.example.Wassup.entity.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class RpcHelper {
     public static void writeJsonArray(HttpServletResponse response, JSONArray array) throws IOException{
@@ -33,5 +36,18 @@ public class RpcHelper {
         }
 
         return new JSONObject();
+    }
+
+    // for unit test, convert a list of item objs to json array
+    public static JSONArray getJSONArray(List<Item> items) {
+        JSONArray array = new JSONArray();
+        try {
+            for (Item item: items) {
+                array.put(item.toJSONObject());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
     }
 }
